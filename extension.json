@@ -1,0 +1,68 @@
+{
+	"name": "CustomRedirect",
+	"version": "1.0.0",
+	"author": "Sakura Arumi",
+	"url": "https://github.com/arumi-s/mediawiki-extensions-CustomRedirect",
+	"descriptionmsg": "customredirect-desc",
+	"license-name": "MIT",
+	"type": "other",
+	"config": {
+		"CustomRedirectUseShortUrl": {
+			"description": "Whether to allow short url to be used",
+			"value": false
+		},
+		"CustomRedirectShowShortUrl": {
+			"description": "Whether to show short url on pages",
+			"value": false
+		},
+		"CustomRedirectEnabledNamespaces": {
+			"description": "Defines an array of namespaces to enable custom redirect in",
+			"value": [0]
+		},
+		"CustomRedirectRegexEnabledNamespaces": {
+			"description": "Defines an array of namespaces to enable regex redirect in",
+			"value": []
+		}
+	},
+	"APIPropModules": {
+		"shorturl": {
+			"class": "MediaWiki\\Extension\\CustomRedirect\\Apis\\ApiQueryShortUrl",
+			"services": ["CustomRedirect.UrlShortener"]
+		}
+	},
+	"MessagesDirs": {
+		"CustomRedirect": ["i18n"]
+	},
+	"ExtensionMessagesFiles": {
+		"CustomRedirectMagic": "CustomRedirect.i18n.magic.php"
+	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\CustomRedirect\\": "includes/"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "ParserHookHandler",
+		"BeforePageDisplay": "HookHandler",
+		"InitializeArticleMaybeRedirect": "HookHandler",
+		"BeforeParserFetchTemplateRevisionRecord": "HookHandler",
+		"BeforeParserFetchFileAndTitle": "HookHandler",
+		"HtmlPageLinkRendererBegin": "HookHandler",
+		"SpecialSearchResults": "HookHandler",
+		"ApiOpenSearchSuggest": "HookHandler"
+	},
+	"HookHandlers": {
+		"HookHandler": {
+			"class": "MediaWiki\\Extension\\CustomRedirect\\Hooks",
+			"services": [
+				"MainConfig",
+				"RevisionLookup",
+				"CustomRedirect.UrlShortener",
+				"CustomRedirectLookup"
+			]
+		},
+		"ParserHookHandler": {
+			"class": "MediaWiki\\Extension\\CustomRedirect\\ParserHooks"
+		}
+	},
+	"ServiceWiringFiles": ["includes/ServiceWiring.php"],
+	"manifest_version": 2
+}

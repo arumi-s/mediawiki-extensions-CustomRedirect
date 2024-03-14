@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": ["Sakura Arumi"]
+	},
+	"customredirect-desc": "提供辅助制作自定义重定向的API和Hook，并自带正则表达式重定向及短链接功能",
+	"customredirect": "CustomRedirect",
+	"shorturl": "短网址"
+}

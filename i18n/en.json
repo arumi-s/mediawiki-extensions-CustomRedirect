@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": ["Sakura Arumi"]
+	},
+	"customredirect-desc": "Provides API and Hook for implementing custom redirects, bundled with regex redirect and short url",
+	"customredirect": "CustomRedirect",
+	"shorturl": "ShortURL"
+}
