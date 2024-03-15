@@ -104,7 +104,7 @@ class Hooks implements
 			return;
 		}
 
-		if (!$this->config->get('CustomRedirectUseShortUrl')) {
+		if ($this->config->get('CustomRedirectUseShortUrl')) {
 			$path = trim($request->getVal('title', ''));
 			$resolved = $this->urlShortener->resolve($path);
 			if ($resolved !== null) {
