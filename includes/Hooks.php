@@ -116,6 +116,10 @@ class Hooks implements
 			}
 		}
 
+		if ($title instanceof Title && $title->isRedirect()) {
+			return;
+		}
+
 		$changed = $this->doRedirect($title);
 		if ($changed) {
 			// in case $wgTitle will be used somewhere
@@ -176,6 +180,10 @@ class Hooks implements
 	public function onHtmlPageLinkRendererBegin($linkRenderer, $target, &$text, &$customAttribs, &$query, &$ret)
 	{
 		if (isset($extraAttribs['unred']) || (isset($query['redirect']) && $query['redirect'] === 'no')) {
+			return;
+		}
+
+		if ($target instanceof Title && $target->isRedirect()) {
 			return;
 		}
 
